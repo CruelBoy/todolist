@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>todolist</title>
+	<link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+
+<div class="box">
+	<div class="comfirl" v-show="hid">
+		<p>{{alldelate}}</p>
+		<p><button @click="cancel">取消</button><button @click="confirm">确认</button></p>
+	</div>
+	<div class="contain">
+		<h2>提醒事项</h2>
+		<div class="toggle"><span @click="toggle">{{icon}}</span></div>
+		<div class="middle" v-show="hidden">
+			<p>代办日期：</p>
+			<input id="text" type="text" placeholder="输入代办日期" v-model="mydata">
+			<p>代办事项描述：</p>
+			<input id="text" type="text" placeholder="输入代办事项" v-model="event">
+			<a class="blue" href="javascript:;" @click="add">添加</a>
+			<a class="red" href="javascript:;" @click="repeat">重置</a>
+		</div>
+		<div class="context">
+			<h3>代办事项列表</h3>
+			<table>
+
+				<tr>
+					<th>序号</th>
+					<th>代办日期</th>
+					<th>事项描述</th>
+					<th>操作</th>
+				</tr>
+				<tr v-for="(value,index) in datalist">
+					<td>{{index+1}}</td>
+					<td>{{value.mydata}}</td>
+					<td>{{value.event}}</td>
+					<td><button class="del" @click="delate(index)">删除</button></td>
+				</tr>
+
+				<tr v-show="datalist.length==0"><td colspan="4">暂无数据</td></tr>
+
+				<tr v-show="datalist.length!=0"><td colspan="4"><button class="alldel" @click="alldel">删除全部</button></td></tr>
+
+			</table>
+		</div>
+	</div>
+
+</div>
+
+	
+</body>
+</html>
+<script type="text/javascript" src="js/vue.js"></script>
+<script type="text/javascript" src="js/todolist.js"></script>
